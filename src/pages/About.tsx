@@ -12,36 +12,18 @@ function About() {
       <Container>
         <div className="flex flex-col md:flex-row mt-12 gap-x-8">
           <div className="md:w-1/2 mb-4 md:mb-0">
-            <div className="grid grid-cols-1 min-[450px]:grid-cols-2 md:grid-cols-3 gap-8">
+            <div className="w-full justify-center items-start gap-6 grid sm:grid-cols-2 grid-cols-1 lg:order-first order-last">
+              <div className="pt-24 lg:justify-center sm:justify-end justify-start items-start gap-2.5 flex">
+                <img
+                  className=" rounded-xl"
+                  src="https://pagedone.io/asset/uploads/1717741205.png"
+                  alt="about Us image"
+                />
+              </div>
               <img
-                src="https://pagedone.io/asset/uploads/1696238644.png"
-                alt="Team tailwind section"
-                className="w-44 h-56 rounded-2xl object-cover md:mt-20 mx-auto min-[450px]:mr-0"
-              />
-              <img
-                src="https://pagedone.io/asset/uploads/1696238665.png"
-                alt="Team tailwind section"
-                className="w-44 h-56 rounded-2xl object-cover mx-auto min-[450px]:ml-0 md:mx-auto"
-              />
-              <img
-                src="https://pagedone.io/asset/uploads/1696238684.png"
-                alt="Team tailwind section"
-                className="w-44 h-56 rounded-2xl object-cover md:mt-20 mx-auto min-[450px]:mr-0 md:ml-0"
-              />
-              <img
-                src="https://pagedone.io/asset/uploads/1696238702.png"
-                alt="Team tailwind section"
-                className="w-44 h-56 rounded-2xl object-cover mx-auto min-[450px]:ml-0 md:mr-0 md:ml-auto"
-              />
-              <img
-                src="https://pagedone.io/asset/uploads/1696238720.png"
-                alt="Team tailwind section"
-                className="w-44 h-56 rounded-2xl object-cover md:-mt-20 mx-auto min-[450px]:mr-0 md:mx-auto"
-              />
-              <img
-                src="https://pagedone.io/asset/uploads/1696238737.png"
-                alt="Team tailwind section"
-                className="w-44 h-56 rounded-2xl object-cover mx-auto min-[450px]:ml-0 md:mr-0"
+                className="sm:ml-0 ml-auto rounded-xl"
+                src="https://pagedone.io/asset/uploads/1717741215.png"
+                alt="about Us image"
               />
             </div>
           </div>
