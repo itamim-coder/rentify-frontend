@@ -67,3 +67,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* In your global CSS file or Tailwind configuration */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
