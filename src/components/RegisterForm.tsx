@@ -17,6 +17,8 @@ const RegisterForm = () => {
       name: "",
       email: "",
       password: "",
+      phone: "",
+      address: "",
     },
   });
 
