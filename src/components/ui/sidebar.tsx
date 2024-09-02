@@ -3,12 +3,13 @@ import { cn } from "@/lib/utils";
 
 import React, { useState, createContext, useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { IconMenu2, IconX } from "@tabler/icons-react";
+import { IconArrowLeft, IconMenu2, IconX } from "@tabler/icons-react";
 import { Link, LinkProps } from "react-router-dom";
+import { Button } from "./button";
 
 interface Links {
   label: string;
-  to: string;
+  to?: string;
   icon: React.JSX.Element | React.ReactNode;
 }
 
@@ -159,13 +160,20 @@ export const MobileSidebar = ({
 export const SidebarLink = ({
   link,
   className,
+  onClick,
   ...props
 }: {
   link: Links;
   className?: string;
+  onClick?: () => void;
   props?: LinkProps;
 }) => {
   const { open, animate } = useSidebar();
+  const handleClick = () => {
+    if (onClick) {
+      onClick(); // Trigger the passed onClick function if it exists
+    }
+  };
   return (
     <Link
       to={link.to}
@@ -173,6 +181,7 @@ export const SidebarLink = ({
         "flex items-center justify-start gap-2  group/sidebar py-2",
         className
       )}
+      onClick={handleClick}
       {...props}
     >
       {link.icon}
@@ -187,5 +196,40 @@ export const SidebarLink = ({
         {link.label}
       </motion.span>
     </Link>
+  );
+};
+export const SidebarButton = ({
+  className,
+  onClick,
+}: {
+  className?: string;
+  onClick?: () => void;
+}) => {
+  const { open, animate } = useSidebar();
+  const handleClick = () => {
+    if (onClick) {
+      onClick(); // Trigger the passed onClick function if it exists
+    }
+  };
+  return (
+    <button
+      className={cn(
+        "flex items-center justify-start gap-2 ml-1 group/sidebar py-2",
+        className
+      )}
+      onClick={handleClick}
+    >
+      <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+
+      <motion.span
+        animate={{
+          display: animate ? (open ? "inline-block" : "none") : "inline-block",
+          opacity: animate ? (open ? 1 : 0) : 1,
+        }}
+        className="text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
+      >
+        Logout
+      </motion.span>
+    </button>
   );
 };

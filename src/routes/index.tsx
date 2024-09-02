@@ -16,6 +16,7 @@ import ManageReturnCars from "@/pages/admin/ManageReturnCars";
 import UserManagement from "@/pages/admin/UserManagement";
 import PaymentManagement from "@/pages/user/PaymentManagement";
 import BookingManagement from "@/pages/user/BookingManagement";
+import ProtectedRoute from "@/components/layouts/ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -41,7 +42,11 @@ export const router = createBrowserRouter([
 
   {
     path: "/user",
-    element: <DashboardLayout />,
+    element: (
+      <ProtectedRoute role="user">
+        <DashboardLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         index: true,
@@ -64,7 +69,12 @@ export const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <DashboardLayout />,
+    element: (
+      <ProtectedRoute role="admin">
+        <DashboardLayout />
+      </ProtectedRoute>
+    ),
+
     children: [
       {
         index: true,

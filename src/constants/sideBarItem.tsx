@@ -68,23 +68,23 @@ export const menus = (role: string) => {
         { label: "Privacy Settings", to: "/admin/privacy-settings" },
       ],
     },
-    {
-      label: "Logout",
-      to: "/logout",
-      icon: (
-        <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
-    },
+    // {
+    //   label: "Logout",
+    //   to: "/logout",
+    //   icon: (
+    //     <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+    //   ),
+    // },
   ];
 
   const user = [
-    {
-      label: "Dashboard",
-      to: `/${role}/dashboard`,
-      icon: (
-        <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
-    },
+    // {
+    //   label: "Dashboard",
+    //   to: `/${role}/dashboard`,
+    //   icon: (
+    //     <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+    //   ),
+    // },
     {
       label: "Profile",
       to: `/${role}/profile`,
@@ -104,13 +104,6 @@ export const menus = (role: string) => {
       to: `/${role}/payment-management`,
       icon: (
         <IconCurrencyTaka className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
-    },
-    {
-      label: "Logout",
-      to: "/logout",
-      icon: (
-        <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
   ];

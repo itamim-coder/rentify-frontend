@@ -34,7 +34,7 @@ const SignInForm = () => {
       console.log(user);
       dispatch(setUser({ user: user, token: res.token }));
       if (res.data) {
-        navigate(`/${user.role}/dashboard`);
+        navigate(`/${user.role}/profile`);
       }
     } catch (error) {}
     // Add your form submission logic here
