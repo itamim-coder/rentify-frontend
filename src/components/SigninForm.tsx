@@ -10,6 +10,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useLoginMutation } from "@/redux/features/auth/authApi";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "@/redux/hooks";
+import { verifyToken } from "@/utils/verifyToken";
+import { setUser, TUser } from "@/redux/features/auth/authSlice";
 
 const SignInForm = () => {
   const form = useForm({
@@ -18,11 +23,22 @@ const SignInForm = () => {
       password: "",
     },
   });
-
-  function onSubmit(data: any) {
-    console.log(data);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [login] = useLoginMutation();
+  const onSubmit = async (data: any) => {
+    try {
+      const res = await login(data).unwrap();
+      console.group(res);
+      const user = verifyToken(res.token);
+      console.log(user);
+      dispatch(setUser({ user: user, token: res.token }));
+      if (res.data) {
+        navigate(`/${user.role}/dashboard`);
+      }
+    } catch (error) {}
     // Add your form submission logic here
-  }
+  };
 
   return (
     <Form {...form}>

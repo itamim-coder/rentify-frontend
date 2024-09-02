@@ -1,10 +1,8 @@
 import { baseApi } from "./api/baseApi";
+import authReducer from "./features/auth/authSlice";
 
 export const reducer = {
-  //   search: searchReducer,
-  //   hotel: hotelReducer,
-  //   hotelBooking: bookingReducer,
-  //   tourBooking: tourBookingReducer,
-  //   user: userReducer,
+
+  auth: authReducer,
   [baseApi.reducerPath]: baseApi.reducer,
 };
