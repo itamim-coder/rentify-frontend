@@ -140,7 +140,9 @@ const DashboardLayout = () => {
           </div>
         </SidebarBody>
       </Sidebar>
-      <Outlet />
+      <div className="flex-1 overflow-y-auto min-h-screen">
+        <Outlet />
+      </div>
     </div>
   );
 };
