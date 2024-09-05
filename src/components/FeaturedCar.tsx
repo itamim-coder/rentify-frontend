@@ -18,87 +18,8 @@ import { cn } from "@/lib/utils";
 import { Separator } from "./ui/separator";
 import { useGetCarQuery } from "@/redux/api/carApi";
 import { Button } from "./ui/button";
-const CarData = [
-  {
-    id: 1,
-    make: "Toyota",
-    model: "Camry",
-    year: 2022,
-    price: 24425,
-    image: "https://example.com/toyota-camry.jpg",
-    description:
-      "A reliable and comfortable midsize sedan with great fuel efficiency.",
-  },
-  {
-    id: 2,
-    make: "Honda",
-    model: "Civic",
-    year: 2023,
-    price: 21950,
-    image: "https://example.com/honda-civic.jpg",
-    description:
-      "A compact car known for its sporty handling and modern technology.",
-  },
-  {
-    id: 3,
-    make: "Ford",
-    model: "Mustang",
-    year: 2023,
-    price: 55200,
-    image: "https://example.com/ford-mustang.jpg",
-    description: "A classic American muscle car with powerful engine options.",
-  },
-  {
-    id: 4,
-    make: "Chevrolet",
-    model: "Tahoe",
-    year: 2022,
-    price: 49700,
-    image: "https://example.com/chevrolet-tahoe.jpg",
-    description:
-      "A full-size SUV with spacious interior and impressive towing capacity.",
-  },
-  {
-    id: 5,
-    make: "Tesla",
-    model: "Model 3",
-    year: 2023,
-    price: 39999,
-    image: "https://example.com/tesla-model-3.jpg",
-    description:
-      "An all-electric sedan with cutting-edge technology and performance.",
-  },
-  {
-    id: 6,
-    make: "BMW",
-    model: "X5",
-    year: 2022,
-    price: 61500,
-    image: "https://example.com/bmw-x5.jpg",
-    description:
-      "A luxury SUV offering a blend of performance, comfort, and technology.",
-  },
-  {
-    id: 7,
-    make: "Audi",
-    model: "A4",
-    year: 2023,
-    price: 40200,
-    image: "https://example.com/audi-a4.jpg",
-    description:
-      "A luxury compact car with a refined interior and advanced features.",
-  },
-  {
-    id: 8,
-    make: "Mercedes-Benz",
-    model: "C-Class",
-    year: 2023,
-    price: 43850,
-    image: "https://example.com/mercedes-c-class.jpg",
-    description:
-      "A premium sedan with elegant design and innovative technology.",
-  },
-];
+import { Link } from "react-router-dom";
+
 
 export function FeaturedCar() {
   const plugin = React.useRef(Autoplay({ delay: 2000 }));
@@ -110,10 +31,7 @@ export function FeaturedCar() {
       <p className="flex justify-center text-center md:text-4xl font-bold my-12">
         Explore our perfect and <br /> extensive fleet
       </p>
-      <Carousel
-        plugins={[plugin.current]}
-        className=" flex justify-center"
-      >
+      <Carousel plugins={[plugin.current]} className=" flex justify-center">
         <CarouselContent className="flex space-x-2 px-4 ">
           {data?.map((Car, index) => (
             <CarouselItem key={index} className="md:basis-1/3">
@@ -155,7 +73,9 @@ export function FeaturedCar() {
                     <p className="text-black font-bold">
                       ${Car?.pricePerHour} /Hour
                     </p>
-                    <Button>RENT NOW</Button>
+                    <Button>
+                      <Link to={`/car/${Car?._id}`}>RENT NOW</Link>
+                    </Button>
                   </div>
                 </CardContent>
               </Card>

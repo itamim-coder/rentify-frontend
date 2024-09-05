@@ -17,11 +17,15 @@ import UserManagement from "@/pages/admin/UserManagement";
 import PaymentManagement from "@/pages/user/PaymentManagement";
 import BookingManagement from "@/pages/user/BookingManagement";
 import ProtectedRoute from "@/components/layouts/ProtectedRoute";
+import Car from "@/pages/Car";
+import Error from "@/pages/Error";
+import CarListing from "@/pages/CarListing";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <Error />,
   },
   {
     path: "/login",
@@ -38,6 +42,14 @@ export const router = createBrowserRouter([
   {
     path: "/about",
     element: <About />,
+  },
+  {
+    path: "/car/:id",
+    element: <Car />,
+  },
+  {
+    path: "/cars",
+    element: <CarListing />,
   },
 
   {
