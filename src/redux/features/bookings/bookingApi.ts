@@ -11,7 +11,15 @@ export const bookingApi = baseApi.injectEndpoints({
 
       providesTags: ["Bookings"],
     }),
+    createBooking: build.mutation({
+      query: (data) => ({
+        url: `${BOOKING_URL}`,
+        method: "POST",
+        body: data,
+      }),
+      providesTags: ["Bookings"],
+    }),
   }),
 });
 
-export const { useGetMyBookingQuery } = bookingApi;
+export const { useGetMyBookingQuery, useCreateBookingMutation } = bookingApi;

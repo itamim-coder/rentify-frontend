@@ -1,3 +1,4 @@
+import { RootState } from "@/redux/store";
 import { createSlice } from "@reduxjs/toolkit";
 import { format } from "date-fns";
 
@@ -33,3 +34,4 @@ const searchSlice = createSlice({
 export const { setSelectedTime, setSelectedDate } = searchSlice.actions;
 
 export default searchSlice.reducer;
+export const userSearch = (state: RootState) => state.search;

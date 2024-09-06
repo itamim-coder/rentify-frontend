@@ -2,20 +2,36 @@ import MainLayout from "@/components/layouts/MainLayout";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/Container";
 import { selectCurrentUser } from "@/redux/features/auth/authSlice";
+import { useCreateBookingMutation } from "@/redux/features/bookings/bookingApi";
+import { search, userSearch } from "@/redux/features/search/searchSlice";
 import { useAppSelector } from "@/redux/hooks";
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const user = useAppSelector(selectCurrentUser);
+  const { date, time } = useAppSelector(userSearch);
+  const navigate = useNavigate();
   const location = useLocation();
   const { car, selectedTime } = location.state || {}; // Get the car data from state
   console.log(selectedTime);
-
-  const handleBooking = () => {
-    // const data ={
-    //   carId : car._id;
-    // }
+  const [createBooking] = useCreateBookingMutation();
+  const handleBooking = async () => {
+    const data = {
+      car: car._id,
+      date: date,
+      startTime: time,
+    };
+    console.log(data);
+    try {
+      const res = await createBooking(data).unwrap();
+      console.log(res);
+      if (res.data?._id) {
+        navigate("/booking-success", { state: { car } });
+      } else {
+        alert("Error Booking");
+      }
+    } catch (error) {}
   };
   return (
     <MainLayout>

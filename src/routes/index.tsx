@@ -22,6 +22,7 @@ import Error from "@/pages/Error";
 import CarListing from "@/pages/CarListing";
 
 import Checkout from "@/pages/Checkout";
+import BookingSuccess from "@/pages/BookingSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ export const router = createBrowserRouter([
   {
     path: "/checkout",
     element: <Checkout />,
+  },
+  {
+    path: "/booking-success",
+    element: <BookingSuccess />,
   },
 
   {
