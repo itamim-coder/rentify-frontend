@@ -25,7 +25,7 @@ import { useMemo, useState } from "react";
 import React from "react";
 import { ArrowUp, Pencil, Trash } from "lucide-react";
 import AddCarForm from "@/components/AddCarForm";
-import { useGetCarsQuery } from "@/redux/api/carApi";
+import { useDeleteCarMutation, useGetCarsQuery } from "@/redux/api/carApi";
 
 interface Order {
   name: string;
@@ -41,12 +41,12 @@ interface SortState {
 }
 
 const ManageCars = () => {
+  const { data: carsData, isLoading } = useGetCarsQuery(undefined);
+  const cars = carsData?.data || [];
+  const [deleteCar] = useDeleteCarMutation();
   const [search, setSearch] = useState<string>("");
   const [sort, setSort] = useState<SortState>({ key: "name", order: "asc" });
   // eslint-disable-next-line react-hooks/exhaustive-deps
-
-  const { data: carsData, isLoading } = useGetCarsQuery(undefined);
-  const cars = carsData?.data || [];
 
   const filteredData = useMemo(() => {
     if (!cars) return [];
@@ -88,6 +88,13 @@ const ManageCars = () => {
       default:
         return "";
     }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const res = await deleteCar(id);
+      console.log(res);
+    } catch (error) {}
   };
   return (
     <div className="flex md:flex-1 min-h-screen">
@@ -320,6 +327,7 @@ const ManageCars = () => {
                           <Pencil className="size-5 text-white" />
                         </Button>
                         <Button
+                          onClick={() => handleDelete(data._id)}
                           variant="ghost"
                           className="border hover:border-red-600 bg-red-500 "
                           size="icon"
