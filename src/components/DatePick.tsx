@@ -12,9 +12,21 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useAppDispatch } from "@/redux/hooks";
+import { setSelectedDate } from "@/redux/features/search/searchSlice";
 
 export function DatePick() {
-  const [date, setDate] = React.useState<Date>();
+  const [date, setDate] = React.useState<Date>(new Date());
+  const dispatch = useAppDispatch();
+  // This function handles the date selection and conversion
+  const handleDateSelect = (selectedDate: Date | undefined) => {
+    if (selectedDate) {
+      setDate(selectedDate);
+      const formattedDate = format(selectedDate, "yyyy-MM-dd");
+      console.log(formattedDate);
+      dispatch(setSelectedDate({ date: formattedDate })); // Log in "yyyy-MM-dd" format
+    }
+  };
 
   return (
     <Popover>
@@ -27,6 +39,7 @@ export function DatePick() {
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
+          {/* Display "pretty" formatted date or prompt */}
           {date ? format(date, "PPP") : <span>Pick a date</span>}
         </Button>
       </PopoverTrigger>
@@ -34,7 +47,7 @@ export function DatePick() {
         <Calendar
           mode="single"
           selected={date}
-          onSelect={setDate}
+          onSelect={handleDateSelect} // Handle date selection
           initialFocus
         />
       </PopoverContent>

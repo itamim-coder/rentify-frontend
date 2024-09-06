@@ -21,6 +21,8 @@ import Car from "@/pages/Car";
 import Error from "@/pages/Error";
 import CarListing from "@/pages/CarListing";
 
+import Checkout from "@/pages/Checkout";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -50,6 +52,10 @@ export const router = createBrowserRouter([
   {
     path: "/cars",
     element: <CarListing />,
+  },
+  {
+    path: "/checkout",
+    element: <Checkout />,
   },
 
   {
