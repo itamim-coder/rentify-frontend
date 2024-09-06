@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "./button";
 import { Link, NavLink } from "react-router-dom";
-import { MenuIcon, XIcon } from "lucide-react";
+import { LogOut, MenuIcon, User, XIcon } from "lucide-react";
+import { logout, selectCurrentUser } from "@/redux/features/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 // import { MenuIcon, XIcon } from "@heroicons/react/outline";
-
-const user = {
-  name: "Tom Cook",
-  email: "tom@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-};
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarImage } from "./avatar";
 const navigation = [
   { name: "Home", href: "/" },
   { name: "About Us", href: "/about" },
@@ -29,7 +35,8 @@ function classNames(...classes: string[]) {
 function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
+  const user = useAppSelector(selectCurrentUser);
+  const dispatch = useAppDispatch();
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -41,6 +48,10 @@ function NavBar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleLogOut = () => {
+    dispatch(logout());
+  };
 
   return (
     <div
@@ -84,18 +95,46 @@ function NavBar() {
           </div>
           <div className="hidden md:block">
             <div className="ml-4 flex items-center md:ml-6 gap-2">
-              <Button
-                asChild
-                className="px-4 py-2 rounded-md border border-neutral-600 text-black bg-white hover:bg-gray-100 transition duration-200"
-              >
-                <Link to="/login">Login</Link>
-              </Button>
-              <Button
-                asChild
-                className="px-4 py-2 rounded-md bg-teal-500 text-white font-bold transition duration-200 hover:bg-white hover:text-black border-2 border-transparent hover:border-teal-500"
-              >
-                <Link to="/register">Signup</Link>
-              </Button>
+              {user?.email ? (
+                <>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Avatar className="cursor-pointer">
+                        <AvatarImage src="https://github.com/shadcn.png" />
+                      </Avatar>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="w-56 ">
+                      <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuGroup>
+                        <DropdownMenuItem className="cursor-pointer">
+                          <User className="mr-2 h-4 w-4" />
+                          <span>
+                            <Link to={"/user"}>Profile</Link>
+                          </span>
+                          <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                        </DropdownMenuItem>
+                      </DropdownMenuGroup>
+
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem className="cursor-pointer">
+                        <LogOut className="mr-2 h-4 w-4" />
+                        <span onClick={handleLogOut}>Log out</span>
+                        <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </>
+              ) : (
+                <>
+                  <Button
+                    asChild
+                    className="px-4 py-2 rounded-md border border-neutral-600 text-black bg-white hover:bg-gray-100 transition duration-200"
+                  >
+                    <Link to="/login">Login</Link>
+                  </Button>
+                </>
+              )}
             </div>
           </div>
           <div className="-mr-2 flex md:hidden">
@@ -135,34 +174,46 @@ function NavBar() {
             ))}
           </div>
           <div className="border-t border-gray-700 pb-3 pt-4">
-            <div className="flex items-center px-5">
-              <div className="flex-shrink-0">
-                <img
-                  alt=""
-                  src={user.imageUrl}
-                  className="h-10 w-10 rounded-full"
-                />
-              </div>
-              <div className="ml-3">
-                <div className="text-base font-medium leading-none text-white">
-                  {user.name}
-                </div>
-                <div className="text-sm font-medium leading-none text-gray-400">
-                  {user.email}
-                </div>
-              </div>
-            </div>
-            <div className="mt-3 space-y-1 px-2">
-              {userNavigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+            {user.email ? (
+              <>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Avatar className="cursor-pointer">
+                      <AvatarImage src="https://github.com/shadcn.png" />
+                    </Avatar>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-56 ">
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuGroup>
+                      <DropdownMenuItem className="cursor-pointer">
+                        <User className="mr-2 h-4 w-4" />
+                        <span>
+                          <Link to={"/profile"}>Profile</Link>
+                        </span>
+                        <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                      </DropdownMenuItem>
+                    </DropdownMenuGroup>
+
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem className="cursor-pointer">
+                      <LogOut className="mr-2 h-4 w-4" />
+                      <span>Log out</span>
+                      <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </>
+            ) : (
+              <>
+                <Button
+                  asChild
+                  className="px-4 py-2 rounded-md border border-neutral-600 text-black bg-white hover:bg-gray-100 transition duration-200"
                 >
-                  {item.name}
-                </a>
-              ))}
-            </div>
+                  <Link to="/login">Login</Link>
+                </Button>
+              </>
+            )}
           </div>
         </div>
       )}

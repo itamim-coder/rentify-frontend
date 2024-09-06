@@ -7,11 +7,11 @@ export const carApi = baseApi.injectEndpoints({
       query: (data) => ({
         url: `${CAR_URL}`,
         method: "POST",
-        data: data,
+        body: data,
       }),
       invalidatesTags: ["Car"],
     }),
-    getCar: build.query({
+    getCars: build.query({
       query: () => ({
         url: `${CAR_URL}`,
         method: "GET",
@@ -29,4 +29,5 @@ export const carApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useAddCarMutation, useGetCarQuery, useGetSingleCarQuery } = carApi;
+export const { useAddCarMutation, useGetCarsQuery, useGetSingleCarQuery } =
+  carApi;

@@ -16,14 +16,13 @@ import {
 } from "./ui/card";
 import { cn } from "@/lib/utils";
 import { Separator } from "./ui/separator";
-import { useGetCarQuery } from "@/redux/api/carApi";
+import { useGetCarsQuery } from "@/redux/api/carApi";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 
-
 export function FeaturedCar() {
   const plugin = React.useRef(Autoplay({ delay: 2000 }));
-  const { data: carData, isLoading } = useGetCarQuery(undefined);
+  const { data: carData, isLoading } = useGetCarsQuery(undefined);
   console.log(carData);
   const data = carData?.data;
   return (

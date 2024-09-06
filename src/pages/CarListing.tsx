@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useGetCarQuery } from "@/redux/api/carApi";
+import { useGetCarsQuery } from "@/redux/api/carApi";
 import {
   Card,
   CardContent,
@@ -26,7 +26,7 @@ const CarListing = () => {
     order: "asc",
   });
 
-  const { data: carData, isLoading } = useGetCarQuery(undefined);
+  const { data: carData, isLoading } = useGetCarsQuery(undefined);
   const data = carData?.data;
 
   // Handler to update the slider value
