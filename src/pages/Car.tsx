@@ -22,7 +22,7 @@ const Car = () => {
   };
 
   return (
-    <MainLayout>
+    <>
       <Container>
         <div className="py-3">
           <div>
@@ -83,7 +83,7 @@ const Car = () => {
           </div>
         </div>
       </Container>
-    </MainLayout>
+    </>
   );
 };
 

@@ -14,7 +14,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Login = () => {
   return (
-    <MainLayout>
+    <>
       <div className="flex justify-center items-center min-h-screen">
         <Tabs defaultValue="signin" className="w-[400px] ">
           <TabsList className="grid w-full grid-cols-2">
@@ -55,7 +55,7 @@ const Login = () => {
           </TabsContent>
         </Tabs>
       </div>
-    </MainLayout>
+    </>
   );
 };
 

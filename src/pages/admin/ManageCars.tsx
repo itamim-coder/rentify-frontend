@@ -104,14 +104,14 @@ const ManageCars = () => {
             <div className="mx-auto p-4 w-full rounded border">
               <div className="flex justify-between">
                 {" "}
-                <h1 className="text-xl font-bold">Manage Cars</h1>
+                <h1 className="text-xl font-bold"></h1>
                 {/* <Button variant={"outline"} className="border border-black">
                   ADD A CAR
                 </Button> */}
                 <AddCarForm />
               </div>
               <div className="flex flex-wrap items-center justify-between gap-4 border-b  md:py-2">
-                <h1 className="text-xl font-bold">All Bookings</h1>
+                <h1 className="text-xl font-bold">Manage Cars</h1>
                 <div className="flex items-center gap-2">
                   <Input
                     value={search}

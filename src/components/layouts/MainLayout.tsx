@@ -13,12 +13,12 @@ type TContainerProps = {
   children: ReactNode;
 };
 
-const MainLayout = ({ children }: TContainerProps) => {
+const MainLayout = () => {
   return (
     <div className="min-h-full min-w-full">
       <NavBar />
 
-      {children}
+      <Outlet />
 
       <Footer />
     </div>

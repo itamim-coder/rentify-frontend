@@ -73,7 +73,7 @@ const CarListing = () => {
   }, [search, price, selectedFeatures, sort.key, sort.order, data]);
 
   return (
-    <MainLayout>
+    <>
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3 py-5">
           {/* Sidebar */}
@@ -213,7 +213,7 @@ const CarListing = () => {
           </div>
         </div>
       </Container>
-    </MainLayout>
+    </>
   );
 };
 

@@ -23,41 +23,50 @@ import CarListing from "@/pages/CarListing";
 
 import Checkout from "@/pages/Checkout";
 import BookingSuccess from "@/pages/BookingSuccess";
+import Home from "@/pages/Home";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "/cars",
+        element: <CarListing />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/car/:id",
+        element: <Car />,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout />,
+      },
+    ],
   },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/contact",
-    element: <Contact />,
-  },
-  {
-    path: "/about",
-    element: <About />,
-  },
-  {
-    path: "/car/:id",
-    element: <Car />,
-  },
-  {
-    path: "/cars",
-    element: <CarListing />,
-  },
-  {
-    path: "/checkout",
-    element: <Checkout />,
-  },
+
+  // {
+  //   path: "/register",
+  //   element: <Register />,
+  // },
+
   {
     path: "/booking-success",
     element: <BookingSuccess />,
@@ -102,7 +111,7 @@ export const router = createBrowserRouter([
       {
         index: true,
 
-        element: <Dashboard />,
+        element: <Profile />,
       },
       {
         path: "dashboard",

@@ -34,7 +34,7 @@ const Checkout = () => {
     } catch (error) {}
   };
   return (
-    <MainLayout>
+    <>
       <Container>
         {" "}
         <div className="py-3">
@@ -70,7 +70,7 @@ const Checkout = () => {
           </div>
         </div>
       </Container>
-    </MainLayout>
+    </>
   );
 };
 

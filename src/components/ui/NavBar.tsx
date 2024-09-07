@@ -110,7 +110,7 @@ function NavBar() {
                         <DropdownMenuItem className="cursor-pointer">
                           <User className="mr-2 h-4 w-4" />
                           <span>
-                            <Link to={"/user"}>Profile</Link>
+                            <Link to={`${user?.role}`}>Profile</Link>
                           </span>
                           <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                         </DropdownMenuItem>
@@ -119,7 +119,7 @@ function NavBar() {
                       <DropdownMenuSeparator />
                       <DropdownMenuItem className="cursor-pointer">
                         <LogOut className="mr-2 h-4 w-4" />
-                        <span onClick={() => handleLogOut}>Log out</span>
+                        <span onClick={handleLogOut}>Log out</span>
                         <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
                       </DropdownMenuItem>
                     </DropdownMenuContent>
@@ -189,7 +189,7 @@ function NavBar() {
                       <DropdownMenuItem className="cursor-pointer">
                         <User className="mr-2 h-4 w-4" />
                         <span>
-                          <Link to={"/profile"}>Profile</Link>
+                          <Link to={"/user"}>Profile</Link>
                         </span>
                         <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                       </DropdownMenuItem>

@@ -8,7 +8,7 @@ import React from "react";
 
 function About() {
   return (
-    <MainLayout>
+    <>
       <Container>
         <div className="flex flex-col md:flex-row mt-12 gap-x-8">
           <div className="md:w-1/2 mb-4 md:mb-0">
@@ -110,7 +110,7 @@ function About() {
           </div>
         </Marquee>
       </div>
-    </MainLayout>
+    </>
   );
 }
 
