@@ -35,6 +35,14 @@ export const bookingApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Bookings"],
     }),
+    getApprovedBookings: build.query({
+      query: () => ({
+        url: `${BOOKING_URL}/get-approved-bookings`,
+        method: "GET",
+      }),
+
+      providesTags: ["Bookings"],
+    }),
   }),
 });
 
@@ -43,4 +51,5 @@ export const {
   useCreateBookingMutation,
   useAllBookingsQuery,
   useBookingStatusMutation,
+  useGetApprovedBookingsQuery,
 } = bookingApi;

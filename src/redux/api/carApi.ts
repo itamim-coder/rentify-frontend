@@ -33,6 +33,14 @@ export const carApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Car"],
     }),
+    setDropOffTime: build.mutation({
+      query: (data) => ({
+        url: `${CAR_URL}/return`,
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: ["Bookings", "Car"],
+    }),
   }),
 });
 
@@ -41,4 +49,5 @@ export const {
   useGetCarsQuery,
   useGetSingleCarQuery,
   useDeleteCarMutation,
+  useSetDropOffTimeMutation,
 } = carApi;
