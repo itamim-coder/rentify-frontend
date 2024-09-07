@@ -10,6 +10,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useSignUPMutation } from "@/redux/features/auth/authApi";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const RegisterForm = () => {
   const form = useForm({
@@ -19,13 +22,26 @@ const RegisterForm = () => {
       password: "",
       phone: "",
       address: "",
+      role: "user",
     },
   });
-
-  function onSubmit(data: any) {
+  const navigate = useNavigate();
+  const [signUP] = useSignUPMutation();
+  const onSubmit = async (data: any) => {
     console.log(data);
+    try {
+      const res = await signUP(data).unwrap();
+
+      console.log(res);
+      if (res.statusCode === 201) {
+        toast.success("Register Successful login now!!!")
+        navigate(`/login`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
     // Add your form submission logic here
-  }
+  };
 
   return (
     <Form {...form}>

@@ -41,7 +41,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/cars",
-        element: <CarListing />,
+        element: (
+          <ProtectedRoute role={"user" || "admin"}>
+            <CarListing />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/login",
@@ -53,7 +57,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/car/:id",
-        element: <Car />,
+        element: (
+          <ProtectedRoute role={"user" || "admin"}>
+            <Car />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/checkout",
