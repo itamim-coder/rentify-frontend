@@ -21,9 +21,13 @@ import {
 // import { ArrowUp, Pencil, Trash } from "@mynaui/icons-react";
 import { useMemo, useState } from "react";
 
-import { useGetMyBookingQuery } from "@/redux/features/bookings/bookingApi";
+import {
+  useGetMyapprovedBookingQuery,
+  useGetMyBookingQuery,
+} from "@/redux/features/bookings/bookingApi";
 import React from "react";
 import { ArrowUp, Pencil, Trash } from "lucide-react";
+import { useCreatePaymentMutation } from "@/redux/features/payment/paymentApi";
 
 interface Order {
   name: string;
@@ -46,33 +50,16 @@ const PaymentManagement = () => {
   // const { data: bookingsData, isLoading } = useGetMyBookingQuery(undefined);
   // const bookings = bookingsData?.data || [];
 
-  const payments = [
-    {
-      id: "B123456",
-      carName: "Toyota Camry",
-      paymentStatus: "Due",
-      totalAmount: 250.0,
-    },
-    {
-      id: "P987654",
-      carName: "Toyota Camry",
-      paymentStatus: "Paid",
-      totalAmount: 250.0,
-    },
-    {
-      id: "B123456",
-      carName: "Toyota Camry",
-      paymentStatus: "Due",
-      totalAmount: 250.0,
-    },
-  ];
-
+  const { data: paymentsData, isLoading } =
+    useGetMyapprovedBookingQuery(undefined);
+  const payments = paymentsData?.data || [];
+  console.log("payments", payments);
   const filteredData = useMemo(() => {
     if (!payments) return [];
     const searchValue = search.toLowerCase();
     return payments
       .filter((payment) => {
-        return payment?.carName?.toLowerCase().includes(searchValue);
+        return payment?.car.name?.toLowerCase().includes(searchValue);
       })
       .sort((a, b) => {
         if (sort.order === "asc") {
@@ -82,6 +69,8 @@ const PaymentManagement = () => {
         }
       });
   }, [search, sort.key, sort.order, payments]);
+
+  console.log(filteredData);
   const getRideStatusColor = (status: string) => {
     switch (status) {
       case "completed":
@@ -95,12 +84,26 @@ const PaymentManagement = () => {
 
   const getPaymentStatusColor = (status: string) => {
     switch (status) {
-      case "due":
+      case "Pending":
         return "bg-orange-500 text-white";
-      case "paid":
+      case "Paid":
         return "bg-blue-500 text-white";
       default:
         return "";
+    }
+  };
+  const [payment] = useCreatePaymentMutation();
+  const handlePayment = async (id) => {
+    try {
+      const res = await payment(id);
+      console.log("response", res);
+      if (res.data.data.result) {
+        console.log("trigger");
+        console.log(res.data.data.payment_url);
+        window.location.href = res.data.data.payment_url;
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
   return (
@@ -307,7 +310,7 @@ const PaymentManagement = () => {
                   {filteredData.map((data) => (
                     <TableRow key={data?._id}>
                       <TableCell className="font-medium">
-                        {data?.carName}
+                        {data?.transactionId}
                       </TableCell>
                       {/* <TableCell className="">
                         {" "}
@@ -327,18 +330,19 @@ const PaymentManagement = () => {
                       <TableCell>
                         <p
                           className={`text-center font-bold w-2/5 rounded ${getPaymentStatusColor(
-                            "due"
+                            data.paymentStatus
                           )}`}
                         >
-                          {"Due"}
+                          {data.paymentStatus}
                         </p>
                       </TableCell>
-                      <TableCell>{data?.totalAmount}</TableCell>
+                      <TableCell>{data?.totalCost}</TableCell>
 
                       <TableCell className="flex items-center justify-end gap-2">
                         <Button
                           variant="ghost"
                           className="border border-blue-500"
+                          onClick={() => handlePayment(data._id)}
                         >
                           <p className="">Make Payment</p>
                         </Button>

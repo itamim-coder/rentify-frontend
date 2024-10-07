@@ -19,6 +19,14 @@ export const bookingApi = baseApi.injectEndpoints({
 
       providesTags: ["Bookings"],
     }),
+    getMyapprovedBooking: build.query({
+      query: () => ({
+        url: `${BOOKING_URL}/my-approved-bookings`,
+        method: "GET",
+      }),
+
+      providesTags: ["Bookings"],
+    }),
     allBookings: build.query({
       query: () => ({
         url: `${BOOKING_URL}`,
@@ -52,4 +60,5 @@ export const {
   useAllBookingsQuery,
   useBookingStatusMutation,
   useGetApprovedBookingsQuery,
+  useGetMyapprovedBookingQuery,
 } = bookingApi;

@@ -69,9 +69,9 @@ const BookingManagement = () => {
     switch (status) {
       case "cancel":
         return "bg-red-500 text-white";
-      case "accepted":
+      case "Approved":
         return "bg-green-500 text-white";
-      case "pending":
+      case "Pending":
         return "bg-yellow-500 text-white";
       default:
         return "";
@@ -80,9 +80,9 @@ const BookingManagement = () => {
 
   const getPaymentStatusColor = (status: string) => {
     switch (status) {
-      case "due":
+      case "Pending":
         return "bg-orange-500 text-white";
-      case "paid":
+      case "Paid":
         return "bg-blue-500 text-white";
       default:
         return "";
@@ -303,19 +303,19 @@ const BookingManagement = () => {
                       <TableCell>
                         <p
                           className={`text-center font-bold w-2/3 rounded ${getOrderStatusColor(
-                            "pending"
+                            data.bookingStatus
                           )}`}
                         >
-                          {"Pending"}
+                          {data.bookingStatus}
                         </p>
                       </TableCell>
                       <TableCell>
                         <p
                           className={`text-center font-bold w-2/3 rounded ${getPaymentStatusColor(
-                            "due"
+                            data.paymentStatus
                           )}`}
                         >
-                          {"Due"}
+                          {data.paymentStatus}
                         </p>
                       </TableCell>
                       <TableCell>{data?.totalCost}</TableCell>
