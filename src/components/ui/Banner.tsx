@@ -61,11 +61,10 @@ function Banner() {
             </div>
             <div className="mx-auto space-y-8 text-center lg:text-left flex flex-col max-w-3xl justify-center lg:justify-start lg:py-8 flex-1 lg:w-1/2 lg:max-w-none">
               <h1 className="text-gray-800  text-3xl/snug sm:text-5xl/tight lg:text-4xl/tight xl:text-[3.50rem]/tight font-bold">
-                We are providing best and affordable health care.
+                Make Your Ride Easy & Fast with Rentify
               </h1>
-              <p className=" text-gray-700 lg:text-lg max-w-2xl lg:max-w-none mx-auto">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Dignissimos, fugit! Laborum quo maxime at sapiente quasi
+              <p className=" text-gray-700 lg:text-lg max-w-2xl lg:max-w-none ">
+                Rent a car to move from local hosts in 190+ countries.
               </p>
               <Search />
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-[34rem] mx-auto lg:mx-0 w-full">
@@ -74,23 +73,23 @@ function Banner() {
                     450+
                   </span>
                   <h2 className="text-sm text-gray-700 relative">
-                    Diagnostic Weekly
+                    Registered Users
                   </h2>
                 </div>
                 <div className="relative text-center bg-white dark:bg-gray-950/60 border border-red-100  p-5 rounded-3xl before:absolute before:inset-1 before:bg-red-100 dark:before:bg-gray-950 before:rounded-[1.25rem]">
                   <span className="font-bold text-2xl text-gray-900  relative">
-                    450+
+                    99+
                   </span>
                   <h2 className="text-sm text-gray-700 dark:text-gray-300 relative">
-                    Diagnostic Weekly
+                    Daily Booking Request
                   </h2>
                 </div>
                 <div className="relative text-center bg-white dark:bg-gray-950/60 border border-red-100  p-5 rounded-3xl before:absolute before:inset-1 before:bg-red-100 dark:before:bg-gray-950 before:rounded-[1.25rem]">
                   <span className="font-bold text-2xl text-gray-900 dark:text-gray-100 relative">
-                    450+
+                    50+
                   </span>
                   <h2 className="text-sm text-gray-700 dark:text-gray-300 relative">
-                    Diagnostic Weekly
+                    Car Rental Location
                   </h2>
                 </div>
               </div>

@@ -49,7 +49,7 @@ const Review = () => {
     speed: 500,
     autoplay: true,
     autoplaySpeed: 2000,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 0,
     responsive: [
@@ -82,8 +82,8 @@ const Review = () => {
 
   return (
     <>
-      <div className="min-h-screen">
-        <p className="flex justify-center text-center md:text-4xl font-bold mb-12">
+      <div className="py-9 ">
+        <p className="flex justify-center text-center md:text-3xl font-bold mb-12">
           What our customers are <br /> saying about us
         </p>
         <div className="w-full">

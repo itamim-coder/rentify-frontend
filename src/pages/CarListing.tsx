@@ -77,13 +77,13 @@ const CarListing = () => {
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3 py-5">
           {/* Sidebar */}
-          <div className="col-span-12 md:col-span-3 md:sticky top-[60px] border border-blue-200 rounded-md h-auto md:h-[500px] p-3 space-y-4">
+          <div className="col-span-12 md:col-span-3 md:sticky top-[60px] border border-red-200 rounded-md h-auto md:h-[500px] p-3 space-y-4">
             <Input
               placeholder="Car Name"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <Separator className="" />
+            <Separator className=" bg-red-200" />
             <div>
               <p>Price</p>
               <Slider
@@ -94,7 +94,7 @@ const CarListing = () => {
                 onValueChange={handlePriceChange} // Update state on value change
               />
               <span className="flex ">
-                <p className="text-sm bg-blue-100 p-1 rounded-md border border-blue-400 mt-2">
+                <p className="text-sm text-red-500 bg-red-100 p-1 rounded-md border border-red-400 mt-2">
                   Max Price/hr: ${price}
                 </p>
               </span>
@@ -163,7 +163,7 @@ const CarListing = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {filteredData?.map((Car, index) => (
                 <div key={index} className="flex">
-                  <Card className="w-full h-full border border-gray-300 hover:shadow-xl">
+                  <Card className="w-full h-full border border-gray-300 hover:shadow-xl flex flex-col justify-between">
                     <CardHeader className="relative">
                       <div
                         className={cn(
@@ -186,22 +186,26 @@ const CarListing = () => {
 
                       <CardTitle className="text-lg">{Car?.name}</CardTitle>
                     </CardHeader>
-                    <CardDescription>
-                      <div className="p-3 grid grid-cols-2 gap-2">
-                        {Car.features.map((feature, index) => (
-                          <div key={index} className="text-sm">
-                            {feature}
-                          </div>
-                        ))}
-                      </div>
-                    </CardDescription>
+
+                    <div className="flex-grow">
+                      <CardDescription>
+                        <div className="p-3 grid grid-cols-2 gap-2">
+                          {Car.features.map((feature, index) => (
+                            <div key={index} className="text-sm">
+                              {feature}
+                            </div>
+                          ))}
+                        </div>
+                      </CardDescription>
+                    </div>
+
                     <CardContent>
                       <Separator />
                       <div className="mt-3 rounded-md flex justify-between items-center">
                         <p className="text-black font-bold">
                           ${Car?.pricePerHour} /Hour
                         </p>
-                        <Button>
+                        <Button className="bg-red-500 text-white hover:bg-red-600">
                           <Link to={`/car/${Car?._id}`}>RENT NOW</Link>
                         </Button>
                       </div>

@@ -4,7 +4,8 @@ import Review from "@/components/Review";
 
 import Banner from "@/components/ui/Banner";
 import Container from "@/components/ui/Container";
-import WhyChooseUs from "@/components/WhyChooseUs";
+import WhyChooseUs from "@/components/home/WhyChooseUs";
+import HowWorks from "@/components/home/HowWorks";
 
 function Home() {
   return (
@@ -12,6 +13,7 @@ function Home() {
       <Banner />
       {/* <CarFloat /> */}
       <Container>
+        <HowWorks />
         <FeaturedCar />
 
         <WhyChooseUs />
