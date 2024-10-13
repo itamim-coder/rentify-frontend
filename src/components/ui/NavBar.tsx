@@ -80,10 +80,10 @@ function NavBar() {
                   className={({ isActive }) =>
                     classNames(
                       isActive
-                        ? "bg-gray-900 text-white"
+                        ? "bg-red-600 text-white"
                         : scrolled
-                        ? "text-white hover:bg-gray-700 hover:text-white"
-                        : "text-black-300 hover:bg-gray-700 hover:text-white",
+                        ? "text-white hover:bg-red-500 hover:text-white"
+                        : "text-black-300 hover:bg-red-500 hover:text-white",
                       "rounded-md px-3 py-2 text-sm font-medium"
                     )
                   }

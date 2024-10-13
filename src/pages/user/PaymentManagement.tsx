@@ -94,6 +94,7 @@ const PaymentManagement = () => {
   };
   const [payment] = useCreatePaymentMutation();
   const handlePayment = async (id) => {
+    console.log(id);
     try {
       const res = await payment(id);
       console.log("response", res);
@@ -143,6 +144,9 @@ const PaymentManagement = () => {
                         <DropdownMenuRadioItem value="name">
                           Car Name
                         </DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem value="name">
+                          Transaction Id
+                        </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem value="date">
                           Booked On
                         </DropdownMenuRadioItem>
@@ -186,6 +190,24 @@ const PaymentManagement = () => {
                       }
                     >
                       Car Name
+                      {sort.key === "name" && (
+                        <span className="ml-1">
+                          {sort.order === "asc" ? "\u2191" : "\u2193"}
+                        </span>
+                      )}
+                    </TableHead>
+                    <TableHead
+                      className="w-[200px]"
+                      onClick={() =>
+                        setSort({
+                          key: "name",
+                          order: (sort.key = "name"
+                            ? (sort.order = "asc" ? "desc" : "asc")
+                            : "asc"),
+                        })
+                      }
+                    >
+                      Transaction Id
                       {sort.key === "name" && (
                         <span className="ml-1">
                           {sort.order === "asc" ? "\u2191" : "\u2193"}
@@ -310,7 +332,10 @@ const PaymentManagement = () => {
                   {filteredData.map((data) => (
                     <TableRow key={data?._id}>
                       <TableCell className="font-medium">
-                        {data?.transactionId}
+                        {data?.car.name}
+                      </TableCell>
+                      <TableCell className="font-medium">
+                        {data?.transactionId?.slice(0, 12)}...
                       </TableCell>
                       {/* <TableCell className="">
                         {" "}
@@ -341,6 +366,7 @@ const PaymentManagement = () => {
                       <TableCell className="flex items-center justify-end gap-2">
                         <Button
                           variant="ghost"
+                          disabled={data.paymentStatus == "Paid"}
                           className="border border-blue-500"
                           onClick={() => handlePayment(data._id)}
                         >

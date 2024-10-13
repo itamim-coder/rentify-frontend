@@ -275,7 +275,7 @@ const BookingManagement = () => {
                         })
                       }
                     >
-                      Total Amount
+                      Per Hour Cost
                       {sort.key === "startTime" && (
                         <span className="ml-1">
                           {sort.order === "asc" ? "\u2191" : "\u2193"}
@@ -318,7 +318,7 @@ const BookingManagement = () => {
                           {data.paymentStatus}
                         </p>
                       </TableCell>
-                      <TableCell>{data?.totalCost}</TableCell>
+                      <TableCell>{data?.car.pricePerHour}</TableCell>
 
                       <TableCell className="flex items-center justify-end gap-2">
                         <Button
